@@ -91,3 +91,22 @@
 .animate-orbit-reverse {
   animation: reverseOrbit 44s linear infinite;
 }
+
+.team-square {
+  width: 176px;
+  height: 176px;
+  border-radius: 16px;
+}
+
+@media (min-width: 640px) {
+  .team-square {
+    width: 208px;
+    height: 208px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit {
+    animation: none;
+  }
+}

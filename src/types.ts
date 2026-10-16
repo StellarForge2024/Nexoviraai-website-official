@@ -63,3 +63,16 @@ export interface ConceptDemo {
   description: string;
   features: string[];
 }
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  focus: string;
+  bio: string;
+  quote: string;
+  expertise: string[];
+  initials: string;
+  accent: string;
+  image?: string;
+}

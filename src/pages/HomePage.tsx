@@ -22,6 +22,7 @@ import { WhyUsSection } from '../components/WhyUsSection';
 import { ReviewSection } from '../components/ReviewSection';
 import { FaqSection } from '../components/FaqSection';
 import { CallToAction } from '../components/CallToAction';
+import { TeamIntroSection } from '../components/TeamIntroSection';
 import { servicesData } from '../data/servicesData';
 import { industriesData } from '../data/industriesData';
 
@@ -161,6 +162,8 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                     <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                     <span><strong>100% Code Ownership:</strong> You own all custom repositories, database schemas, and intellectual property.</span>
                   </div>
+
+      {/* 3. Services Overview Section */}
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                     <span><strong>Zero Per-Seat Fees:</strong> Custom systems that scale with your team without recurring licensing penalties.</span>
@@ -255,7 +258,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       {/* 6. Why NEXOVIRA AI Solution */}
       <WhyUsSection />
 
-      {/* 7. Industries & Use Cases Preview */}
+      {/* 7. Team Introduction */}
+      <TeamIntroSection />
+
+      {/* 8. Industries & Use Cases Preview */}
       <section className="py-24 bg-[#070b14] relative border-t border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -313,13 +319,13 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         </div>
       </section>
 
-      {/* 8. Client Reviews & Feedback */}
+      {/* 9. Client Reviews & Feedback */}
       <ReviewSection navigate={navigate} />
 
-      {/* 9. Frequently Asked Questions */}
+      {/* 10. Frequently Asked Questions */}
       <FaqSection />
 
-      {/* 10. Final Call to Action */}
+      {/* 11. Final Call to Action */}
       <CallToAction navigate={navigate} />
 
     </div>

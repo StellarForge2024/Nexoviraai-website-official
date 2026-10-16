@@ -15,6 +15,7 @@ import { WhyUsSection } from '../components/WhyUsSection';
 import { ProcessSection } from '../components/ProcessSection';
 import { ReviewSection } from '../components/ReviewSection';
 import { CallToAction } from '../components/CallToAction';
+import { TeamIntroSection } from '../components/TeamIntroSection';
 
 interface AboutPageProps {
   navigate: (path: string) => void;
@@ -120,6 +121,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
           </div>
         </div>
       </section>
+
+      {/* Team Introduction */}
+      <TeamIntroSection />
 
       {/* Engineering Principles */}
       <WhyUsSection />

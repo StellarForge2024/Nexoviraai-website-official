@@ -29,25 +29,22 @@ export interface LocationConfig {
 }
 
 export const locationConfig: LocationConfig = {
-  // Set to true once you paste your real Google Maps URLs and address
-  // When false, the map section displays a helpful unconfigured state with setup guidance
-  isConfigured: false,
+  // Configured with verified Bengaluru office details
+  isConfigured: true,
 
   officeName: 'NEXOVIRA AI Solution Headquarters',
   
-  // Replace with your physical office address
-  address: '[ENTER YOUR OFFICE ADDRESS]',
-  cityStateZip: 'Innovation District',
-  country: 'Global Operations',
+  // Physical office address
+  address: 'No. 15, 100 Feet Ring Road, BTM 2nd Stage, Kuvempu Nagar',
+  cityStateZip: 'Bengaluru, Karnataka 560076',
+  country: 'India',
 
-  // Paste your Google Maps <iframe> src URL here
-  // Example: "https://www.google.com/maps/embed?pb=!1m18!1m12!..."
-  embedUrl: '',
+  // Google Maps embed URL for iframe
+  embedUrl: 'https://maps.google.com/maps?q=No.+15,+100+Feet+Ring+Road,+BTM+2nd+Stage,+Kuvempu+Nagar,+Bengaluru,+Karnataka+560076&t=&z=16&ie=UTF8&iwloc=&output=embed',
 
-  // Paste your Google Maps direct location link for the "Get Directions" button
-  // Example: "https://maps.app.goo.gl/..." or "https://www.google.com/maps/search/?api=1&query=..."
-  directionsUrl: '',
+  // Google Maps direct location link for navigation
+  directionsUrl: 'https://www.google.com/maps/search/?api=1&query=No.+15,+100+Feet+Ring+Road,+BTM+2nd+Stage,+Kuvempu+Nagar,+Bengaluru,+Karnataka+560076',
 
-  visitingHours: 'Monday – Friday: 9:00 AM – 6:00 PM',
-  consultationNote: 'In-person consultations are available by appointment. For initial architectural discussions, we recommend booking a virtual consultation.'
+  visitingHours: 'Monday – Friday: 9:00 AM – 6:30 PM IST',
+  consultationNote: 'In-person consultations and architecture discovery sessions are available by appointment at our Bengaluru office. For initial discussions, we also host direct virtual consultations.'
 };

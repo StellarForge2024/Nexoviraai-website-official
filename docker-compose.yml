@@ -1,0 +1,11 @@
+services:
+  nexovira-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nexovira-ai-website
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production

@@ -15,6 +15,7 @@ export const teamMembers: TeamMember[] = [
     expertise: ['Solution Architecture', 'AI Strategy', 'Product Discovery', 'Client Partnership'],
     initials: 'KU',
     accent: 'blue',
+    image: '/team/krishna-upadhyay.jpg',
   },
   {
     id: 'software-engineering',
@@ -26,6 +27,7 @@ export const teamMembers: TeamMember[] = [
     expertise: ['Custom Software', 'CRM / ERP', 'API Integrations', 'System Design'],
     initials: 'AS',
     accent: 'cyan',
+    image: '/team/aarav-sharma.jpg',
   },
   {
     id: 'ai-systems',
@@ -37,6 +39,7 @@ export const teamMembers: TeamMember[] = [
     expertise: ['AI Agents', 'RAG / Grounding', 'Process Automation', 'Evaluation'],
     initials: 'IK',
     accent: 'indigo',
+    image: '/team/isha-kapoor.jpg',
   },
   {
     id: 'web-platforms',
@@ -48,6 +51,7 @@ export const teamMembers: TeamMember[] = [
     expertise: ['Web Development', 'Micro-SaaS', 'UX Architecture', 'Performance'],
     initials: 'RD',
     accent: 'sky',
+    image: '/team/rohan-desai.jpg',
   },
   {
     id: 'data-intelligence',
@@ -59,5 +63,6 @@ export const teamMembers: TeamMember[] = [
     expertise: ['Data Pipelines', 'Business Intelligence', 'Reporting', 'Data Quality'],
     initials: 'MN',
     accent: 'teal',
+    image: '/team/meera-nair.jpg',
   },
 ];

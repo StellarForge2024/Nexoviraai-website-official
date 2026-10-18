@@ -1,7 +1,8 @@
 import React from 'react';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { Mail, ArrowUpRight, MapPin } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import { companyData } from '../data/companyData';
+import { locationConfig } from '../config/locationConfig';
 
 interface FooterProps {
   navigate: (path: string) => void;
@@ -28,15 +29,24 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               We help startups, small and medium businesses, and enterprises build custom software, develop digital platforms, automate business processes, and use data and AI effectively.
             </p>
 
-            <div className="pt-2">
-              <a 
-                href={`mailto:${companyData.email}`}
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors"
-              >
-                <Mail className="w-4 h-4 text-blue-400" />
-                <span>{companyData.email}</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+            <div className="space-y-2.5 pt-2">
+              <div>
+                <a 
+                  href={`mailto:${companyData.email}`}
+                  className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors"
+                >
+                  <Mail className="w-4 h-4 text-blue-400" />
+                  <span>{companyData.email}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              <div className="flex items-start gap-2 text-xs text-slate-400 max-w-xs leading-relaxed">
+                <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                <span>
+                  {locationConfig.address}, {locationConfig.cityStateZip}
+                </span>
+              </div>
             </div>
           </div>
 

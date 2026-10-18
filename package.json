@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "docker:build": "docker build -t nexovira-ai-website .",
+    "docker:run": "docker run -d -p 8080:80 --name nexovira-website nexovira-ai-website",
+    "deploy:cf": "npm run build && npx wrangler pages deploy dist --project-name=nexovira-ai-website"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

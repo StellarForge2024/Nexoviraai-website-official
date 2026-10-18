@@ -39,18 +39,18 @@ jobs:
       - name: Check Cloudflare token availability
         shell: bash
         env:
-          CF_TOKEN_CHECK: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN_CHECK: ${{ secrets.CF_PAGES_TOKEN }}
         run: |
           if [ -n "$CF_TOKEN_CHECK" ]; then
             echo "Cloudflare token secret is available."
           else
-            echo "::error::Cloudflare token secret is missing or unavailable."
+            echo "::error::CF_PAGES_TOKEN is missing or unavailable."
             exit 1
           fi
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.CF_PAGES_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=nexoviraai-website-official

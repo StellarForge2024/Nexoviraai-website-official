@@ -44,4 +44,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=nexovira-ai-website --commit-dirty=true
+          command: pages deploy dist --project-name=nexoviraai-website-official --commit-dirty=true

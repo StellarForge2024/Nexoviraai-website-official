@@ -31,7 +31,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'ai-systems',
-    name: 'Isha Kapoor',
+    name: 'Trisha Kapoor',
     role: 'AI Systems Lead',
     focus: 'Agents, grounded retrieval, and automation',
     bio: 'Isha designs AI agents and internal tools that stay grounded in client data, with clear guardrails and human review. Her work covers support assistants, document intelligence, and workflow automation that teams can trust in production.',

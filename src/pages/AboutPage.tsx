@@ -13,7 +13,6 @@ import {
 import { companyData } from '../data/companyData';
 import { WhyUsSection } from '../components/WhyUsSection';
 import { ProcessSection } from '../components/ProcessSection';
-import { ReviewSection } from '../components/ReviewSection';
 import { CallToAction } from '../components/CallToAction';
 import { TeamIntroSection } from '../components/TeamIntroSection';
 
@@ -130,9 +129,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
 
       {/* Engineering Process */}
       <ProcessSection />
-
-      {/* Client Feedback & Reviews */}
-      <ReviewSection navigate={navigate} />
 
       {/* Final Call to Action */}
       <CallToAction navigate={navigate} />

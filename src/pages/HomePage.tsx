@@ -19,7 +19,6 @@ import { HeroArcVisual } from '../components/HeroArcVisual';
 import { ConceptDemonstrations } from '../components/ConceptDemonstrations';
 import { ProcessSection } from '../components/ProcessSection';
 import { WhyUsSection } from '../components/WhyUsSection';
-import { ReviewSection } from '../components/ReviewSection';
 import { FaqSection } from '../components/FaqSection';
 import { CallToAction } from '../components/CallToAction';
 import { TeamIntroSection } from '../components/TeamIntroSection';
@@ -319,10 +318,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         </div>
       </section>
 
-      {/* 9. Client Reviews & Feedback */}
-      <ReviewSection navigate={navigate} />
-
-      {/* 10. Frequently Asked Questions */}
+      {/* 9. Frequently Asked Questions */}
       <FaqSection />
 
       {/* 11. Final Call to Action */}

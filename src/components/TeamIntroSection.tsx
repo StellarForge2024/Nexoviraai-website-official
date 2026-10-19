@@ -15,7 +15,9 @@ import {
   ArrowRight, 
   Calendar,
   CheckCircle2,
-  Users
+  Users,
+  TrendingUp,
+  Megaphone
 } from 'lucide-react';
 import { teamMembers } from '../data/teamData';
 import { TeamMember } from '../types';
@@ -100,14 +102,12 @@ const getRoleIcon = (id: string, className = 'w-4 h-4') => {
   switch (id) {
     case 'krishna-upadhyay':
       return <ShieldCheck className={className} />;
-    case 'software-engineering':
+    case 'abhishek-soni':
       return <Code2 className={className} />;
-    case 'ai-systems':
-      return <Bot className={className} />;
-    case 'web-platforms':
-      return <Globe className={className} />;
-    case 'data-intelligence':
-      return <Database className={className} />;
+    case 'saurabh-durge':
+      return <TrendingUp className={className} />;
+    case 'abhishek-upadhyay':
+      return <Megaphone className={className} />;
     default:
       return <Sparkles className={className} />;
   }

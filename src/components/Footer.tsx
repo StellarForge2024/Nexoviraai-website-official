@@ -41,11 +41,21 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                 </a>
               </div>
 
-              <div className="flex items-start gap-2 text-xs text-slate-400 max-w-xs leading-relaxed">
-                <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                <span>
-                  {locationConfig.address}, {locationConfig.cityStateZip}
-                </span>
+              <div className="space-y-2 text-xs text-slate-400 max-w-xs leading-relaxed">
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-300 font-semibold block text-[11px]">Bengaluru HQ:</span>
+                    <span>No. 15, 100 Feet Ring Road, BTM 2nd Stage, Bengaluru 560076</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-300 font-semibold block text-[11px]">Bhopal Office:</span>
+                    <span>MP Nagar, Kolar Rd, Bhopal, MP 462042</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

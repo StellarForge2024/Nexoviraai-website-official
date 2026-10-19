@@ -2,18 +2,24 @@
  * ============================================================================
  * NEXOVIRA AI Solution - Office Location Configuration
  * ============================================================================
- * 
- * Update your office address, Google Maps embed URL, and Google Maps
- * directions link here. Once updated, the changes will immediately reflect
- * across the Contact page and "Our Location" section.
- * 
- * Instructions:
- * 1. Find your location on Google Maps (maps.google.com).
- * 2. Click "Share" -> "Embed a map" -> copy the URL from inside src="...".
- * 3. Paste that URL into `embedUrl` below.
- * 4. Copy the direct link from "Share" -> "Copy link" and paste into `directionsUrl`.
- * 5. Update `address` with your formatted street address.
  */
+
+export interface OfficeLocation {
+  id: string;
+  tag: string;
+  city: string;
+  state: string;
+  badge: string;
+  officeName: string;
+  address: string;
+  landmarkArea: string;
+  cityStateZip: string;
+  country: string;
+  embedUrl: string;
+  directionsUrl: string;
+  visitingHours: string;
+  note: string;
+}
 
 export interface LocationConfig {
   isConfigured: boolean;
@@ -26,25 +32,52 @@ export interface LocationConfig {
   visitingHours: string;
   phone?: string;
   consultationNote: string;
+  offices: OfficeLocation[];
 }
 
 export const locationConfig: LocationConfig = {
-  // Configured with verified Bengaluru office details
   isConfigured: true,
-
   officeName: 'NEXOVIRA AI Solution Headquarters',
-  
-  // Physical office address
   address: 'No. 15, 100 Feet Ring Road, BTM 2nd Stage, Kuvempu Nagar',
   cityStateZip: 'Bengaluru, Karnataka 560076',
   country: 'India',
-
-  // Google Maps embed URL for iframe
-  embedUrl: 'https://maps.google.com/maps?q=No.+15,+100+Feet+Ring+Road,+BTM+2nd+Stage,+Kuvempu+Nagar,+Bengaluru,+Karnataka+560076&t=&z=16&ie=UTF8&iwloc=&output=embed',
-
-  // Google Maps direct location link for navigation
+  embedUrl: 'https://maps.google.com/maps?q=No.+15,+100+Feet+Ring+Road,+BTM+2nd+Stage,+Kuvempu+Nagar,+Bengaluru,+Karnataka+560076&t=&z=15&ie=UTF8&iwloc=&output=embed',
   directionsUrl: 'https://www.google.com/maps/search/?api=1&query=No.+15,+100+Feet+Ring+Road,+BTM+2nd+Stage,+Kuvempu+Nagar,+Bengaluru,+Karnataka+560076',
-
   visitingHours: 'Monday – Friday: 9:00 AM – 6:30 PM IST',
-  consultationNote: 'In-person consultations and architecture discovery sessions are available by appointment at our Bengaluru office. For initial discussions, we also host direct virtual consultations.'
+  consultationNote: 'In-person consultations and architecture discovery sessions are available by appointment at our Bengaluru & Bhopal offices. Virtual consultations are hosted daily.',
+  
+  offices: [
+    {
+      id: 'bengaluru',
+      tag: 'Headquarters',
+      city: 'Bengaluru',
+      state: 'Karnataka',
+      badge: 'Headquarters & Tech Center',
+      officeName: 'NEXOVIRA AI Solution Headquarters',
+      address: 'No. 15, 100 Feet Ring Road, BTM 2nd Stage, Kuvempu Nagar',
+      landmarkArea: 'BTM 2nd Stage · Ring Road',
+      cityStateZip: 'Bengaluru, Karnataka 560076',
+      country: 'India',
+      embedUrl: 'https://maps.google.com/maps?q=No.+15,+100+Feet+Ring+Road,+BTM+2nd+Stage,+Kuvempu+Nagar,+Bengaluru,+Karnataka+560076&t=&z=15&ie=UTF8&iwloc=&output=embed',
+      directionsUrl: 'https://www.google.com/maps/search/?api=1&query=No.+15,+100+Feet+Ring+Road,+BTM+2nd+Stage,+Kuvempu+Nagar,+Bengaluru,+Karnataka+560076',
+      visitingHours: 'Mon – Fri: 9:00 AM – 6:30 PM IST',
+      note: 'Primary architecture, client discovery, and strategic enterprise delivery hub.'
+    },
+    {
+      id: 'bhopal',
+      tag: 'Development Hub',
+      city: 'Bhopal',
+      state: 'Madhya Pradesh',
+      badge: 'Development & Operations Office',
+      officeName: 'NEXOVIRA AI Solution - Bhopal Office',
+      address: 'MP Nagar, Amar Vihar, Lalita Nagar, Kolar Rd, Gehun Kheda',
+      landmarkArea: 'Kolar Road · Lalita Nagar',
+      cityStateZip: 'Bhopal, Madhya Pradesh 462042',
+      country: 'India',
+      embedUrl: 'https://maps.google.com/maps?q=MP+Nagar,+Amar+Vihar,+Lalita+Nagar,+Kolar+Rd,+Gehun+Kheda,+Bhopal,+Madhya+Pradesh+462042&t=&z=14&ie=UTF8&iwloc=&output=embed',
+      directionsUrl: 'https://www.google.com/maps/search/?api=1&query=MP+Nagar,+Amar+Vihar,+Lalita+Nagar,+Kolar+Rd,+Gehun+Kheda,+Bhopal,+Madhya+Pradesh+462042',
+      visitingHours: 'Mon – Fri: 9:30 AM – 6:00 PM IST',
+      note: 'Regional operations, software engineering, and partner discovery center.'
+    }
+  ]
 };

@@ -4,175 +4,145 @@ import {
   ExternalLink, 
   Navigation, 
   Clock, 
-  Mail, 
   Compass, 
   Copy, 
   Check, 
   Building2,
   Calendar
 } from 'lucide-react';
-import { locationConfig } from '../config/locationConfig';
+import { locationConfig, OfficeLocation } from '../config/locationConfig';
 import { companyData } from '../data/companyData';
 
 export const OurLocationSection: React.FC = () => {
-  const [copied, setCopied] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  const isEmbedConfigured = 
-    locationConfig.isConfigured || 
-    (Boolean(locationConfig.embedUrl) && !locationConfig.embedUrl.includes('[PASTE'));
-
-  const isDirectionsConfigured = 
-    Boolean(locationConfig.directionsUrl) && !locationConfig.directionsUrl.includes('[PASTE');
-
-  const effectiveDirectionsUrl = isDirectionsConfigured 
-    ? locationConfig.directionsUrl 
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        `${locationConfig.address}, ${locationConfig.cityStateZip}`
-      )}`;
-
-  const fullAddressString = `${locationConfig.address}, ${locationConfig.cityStateZip}, ${locationConfig.country}`;
-
-  const handleCopyAddress = async () => {
+  const handleCopy = async (office: OfficeLocation) => {
     try {
-      await navigator.clipboard.writeText(fullAddressString);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      const fullText = `${office.address}, ${office.cityStateZip}, ${office.country}`;
+      await navigator.clipboard.writeText(fullText);
+      setCopiedId(office.id);
+      setTimeout(() => setCopiedId(null), 2500);
     } catch {
-      // Fallback
-      setCopied(false);
+      setCopiedId(null);
     }
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#070b14] relative border-t border-slate-800/80 overflow-hidden">
-      {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-600/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-cyan-600/10 blur-[130px] rounded-full pointer-events-none" />
+    <section className="py-10 sm:py-14 bg-[#070b14] relative border-t border-slate-800/80 overflow-hidden">
+      {/* Background subtle glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-72 h-72 bg-blue-600/10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-cyan-600/10 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="max-w-2xl">
-            <div className="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2.5 flex items-center gap-2">
-              <Compass className="w-4 h-4 text-blue-400" />
-              <span>Headquarters & In-Person Engagements</span>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 gap-4">
+          <div>
+            <div className="text-[11px] sm:text-xs uppercase tracking-wider text-blue-400 font-semibold mb-1.5 flex items-center gap-1.5">
+              <Compass className="w-3.5 h-3.5 text-blue-400" />
+              <span>Office Hubs & In-Person Engagements</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white font-display">
-              Our Location
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
+              Our Locations
             </h2>
-            <p className="mt-3 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Visit our Bengaluru engineering office for scheduled architecture briefings, project discovery sessions, and hands-on technical roadmap reviews.
+            <p className="mt-1.5 text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
+              Visit our offices for scheduled architecture briefings, discovery sessions, and hands-on technical reviews.
             </p>
           </div>
 
-          {/* Quick Hub Badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-semibold backdrop-blur-sm self-start md:self-end">
-            <Building2 className="w-4 h-4 text-blue-400" />
-            <span>Bengaluru Tech Corridor · India</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/25 text-blue-300 text-xs font-semibold self-start sm:self-end shrink-0">
+            <Building2 className="w-3.5 h-3.5 text-blue-400" />
+            <span>Bengaluru · Bhopal</span>
           </div>
         </div>
 
-        {/* Main Location Card */}
-        <div className="bg-[#0b1222] border border-blue-900/40 rounded-3xl overflow-hidden shadow-2xl relative">
-          
-          {/* Map View Area */}
-          <div className="relative w-full h-[400px] sm:h-[480px] bg-[#070b14]">
-            {isEmbedConfigured ? (
-              <iframe
-                src={locationConfig.embedUrl}
-                title="NEXOVIRA AI Solution Office Location"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full filter saturate-[0.9] contrast-[1.05]"
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-tech-grid relative overflow-hidden">
-                <div className="w-20 h-20 rounded-full border border-blue-500/30 bg-blue-950/40 flex items-center justify-center animate-pulse mb-5">
-                  <div className="w-12 h-12 rounded-full border border-blue-400/50 bg-blue-600/20 flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-blue-400" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-white font-display">
-                  NEXOVIRA AI Solution Headquarters
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 max-w-md mt-2">
-                  {fullAddressString}
-                </p>
-              </div>
-            )}
-
-            {/* Floating Office Badge */}
-            <div className="absolute top-4 left-4 z-20 bg-[#070b14]/90 backdrop-blur-md border border-blue-900/50 rounded-xl px-4 py-2.5 shadow-xl flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] animate-pulse" />
-              <div>
-                <div className="text-xs font-bold text-white tracking-wide">
-                  NEXOVIRA AI Solution
-                </div>
-                <div className="text-[11px] text-slate-400">
-                  Headquarters & Development Center
-                </div>
-              </div>
-            </div>
-
-            {/* Direct Open in Maps Link on Top Right */}
-            <div className="absolute top-4 right-4 z-20 hidden sm:block">
-              <a
-                href={effectiveDirectionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#070b14]/90 hover:bg-blue-600 hover:text-white text-slate-200 border border-white/15 backdrop-blur-md text-xs font-semibold transition-all duration-200 shadow-xl"
+        {/* Dual Location Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+          {locationConfig.offices.map((office) => {
+            const isCopied = copiedId === office.id;
+            return (
+              <div 
+                key={office.id}
+                className="bg-[#0b1222] border border-blue-900/35 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-blue-700/50 transition-all duration-300"
               >
-                <span>Open in Google Maps</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
+                {/* Compact Map Container */}
+                <div className="relative w-full h-44 sm:h-48 bg-[#070b14]">
+                  <iframe
+                    src={office.embedUrl}
+                    title={`${office.officeName} Map`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-full filter saturate-[0.85] contrast-[1.05]"
+                  />
 
-          {/* Details & Actions Below Map */}
-          <div className="p-6 sm:p-10 bg-[#0c1322] border-t border-slate-800/80">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              
-              {/* Address Details (8 cols) */}
-              <div className="lg:col-span-8 space-y-5">
-                
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-2xl bg-blue-950/80 border border-blue-800/50 text-blue-400 shrink-0 mt-0.5 shadow-md">
-                    <MapPin className="w-6 h-6" />
+                  {/* Floating Tag Badge */}
+                  <div className="absolute top-2.5 left-2.5 z-10 bg-[#070b14]/90 backdrop-blur-md border border-white/15 rounded-lg px-2.5 py-1 shadow-lg flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                    <span className="text-[11px] font-bold text-white tracking-wide">
+                      {office.city} ({office.tag})
+                    </span>
                   </div>
-                  <div className="space-y-1.5 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
-                        Registered Office Address
+
+                  {/* Open in Maps Icon Link */}
+                  <a
+                    href={office.directionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${office.city} in Google Maps`}
+                    className="absolute top-2.5 right-2.5 z-10 p-1.5 rounded-lg bg-[#070b14]/90 hover:bg-blue-600 hover:text-white text-slate-300 border border-white/15 backdrop-blur-md transition-all shadow-lg cursor-pointer"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Details Content */}
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3.5 bg-[#0b1222]">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-blue-400">
+                        {office.badge}
                       </span>
-                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/25">
-                        BTM 2nd Stage · Ring Road
+                      <span className="text-[10px] text-slate-400 font-mono">
+                        {office.landmarkArea}
                       </span>
                     </div>
 
-                    <div className="text-lg sm:text-xl font-bold text-white leading-snug">
-                      {locationConfig.address}
+                    <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                      {office.officeName}
+                    </h3>
+
+                    <div className="flex items-start gap-2 mt-2 text-xs text-slate-300">
+                      <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+                      <div>
+                        <div className="leading-snug">{office.address}</div>
+                        <div className="text-slate-400 text-[11px] mt-0.5">
+                          {office.cityStateZip} · {office.country}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-2.5 border-t border-slate-800/80 space-y-2">
+                    <div className="flex items-center gap-2 text-[11px] text-slate-400">
+                      <Clock className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                      <span>{office.visitingHours}</span>
                     </div>
 
-                    <div className="text-sm sm:text-base font-semibold text-slate-300">
-                      {locationConfig.cityStateZip} · {locationConfig.country}
-                    </div>
-
-                    {/* Copy Address Button */}
-                    <div className="pt-1">
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-2 pt-1">
                       <button
                         type="button"
-                        onClick={handleCopyAddress}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-xs font-medium text-slate-300 hover:text-white transition-all cursor-pointer"
+                        onClick={() => handleCopy(office)}
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-xs font-medium text-slate-300 hover:text-white transition-all cursor-pointer"
                       >
-                        {copied ? (
+                        {isCopied ? (
                           <>
                             <Check className="w-3.5 h-3.5 text-emerald-400" />
-                            <span className="text-emerald-400">Address Copied to Clipboard</span>
+                            <span className="text-emerald-400">Copied</span>
                           </>
                         ) : (
                           <>
@@ -181,58 +151,41 @@ export const OurLocationSection: React.FC = () => {
                           </>
                         )}
                       </button>
+
+                      <a
+                        href={office.directionsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-semibold transition-all shadow-md shadow-blue-900/30 cursor-pointer"
+                      >
+                        <Navigation className="w-3.5 h-3.5" />
+                        <span>Directions</span>
+                      </a>
                     </div>
                   </div>
+
                 </div>
 
-                {/* Additional Office Notes */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800/80 text-xs">
-                  <div className="flex items-center gap-2.5 text-slate-300">
-                    <Clock className="w-4 h-4 text-blue-400 shrink-0" />
-                    <span>{locationConfig.visitingHours}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2.5 text-slate-300">
-                    <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                    <a 
-                      href={`mailto:${companyData.email}`} 
-                      className="text-blue-400 hover:text-blue-300 underline underline-offset-2"
-                    >
-                      {companyData.email}
-                    </a>
-                  </div>
-                </div>
-
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  {locationConfig.consultationNote}
-                </p>
               </div>
+            );
+          })}
+        </div>
 
-              {/* Action Buttons (4 cols) */}
-              <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
-                <a
-                  href={effectiveDirectionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full px-6 py-3.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-700 rounded-xl transition-all shadow-lg shadow-blue-900/40 hover:scale-[1.02] flex items-center justify-center gap-2 text-center cursor-pointer"
-                >
-                  <Navigation className="w-4 h-4" />
-                  <span>Get Directions</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-                </a>
-
-                <a
-                  href={`mailto:${companyData.email}?subject=In-Person%20Meeting%20Request%20-%20NEXOVIRA%20AI%20Solution`}
-                  className="w-full px-5 py-3 text-xs font-semibold text-slate-200 hover:text-white bg-slate-900/90 hover:bg-slate-800 border border-slate-700 rounded-xl transition-all flex items-center justify-center gap-2 text-center cursor-pointer"
-                >
-                  <Calendar className="w-4 h-4 text-blue-400" />
-                  <span>Request In-Person Meeting</span>
-                </a>
-              </div>
-
-            </div>
+        {/* Compact In-Person Consultation Footer Bar */}
+        <div className="mt-5 p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-blue-950/30 via-[#0b1222] to-cyan-950/30 border border-blue-900/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2.5 text-slate-300">
+            <Calendar className="w-4 h-4 text-blue-400 shrink-0" />
+            <span>
+              {locationConfig.consultationNote}
+            </span>
           </div>
 
+          <a
+            href={`mailto:${companyData.email}?subject=In-Person%20Meeting%20Request%20-%20NEXOVIRA%20AI%20Solution`}
+            className="shrink-0 px-3.5 py-1.5 rounded-lg bg-blue-600/15 hover:bg-blue-600 hover:text-white text-blue-400 border border-blue-500/30 text-xs font-semibold transition-all whitespace-nowrap cursor-pointer"
+          >
+            Request In-Person Meeting
+          </a>
         </div>
 
       </div>

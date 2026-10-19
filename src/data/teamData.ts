@@ -15,7 +15,7 @@ export const teamMembers: TeamMember[] = [
     expertise: ['Project Management', 'Solution Architecture', 'AI Strategy', 'Client Partnership'],
     initials: 'KU',
     accent: 'blue',
-    image: '/team/krishna-upadhyay.jpg',
+    image: '/team/krishna-upadhyay-founder.jpg',
   },
   {
     id: 'abhishek-soni',

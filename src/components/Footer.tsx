@@ -1,8 +1,9 @@
 import React from 'react';
-import { Mail, ArrowUpRight, MapPin } from 'lucide-react';
+import { Mail, ArrowUpRight, MapPin, Phone } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import { companyData } from '../data/companyData';
 import { locationConfig } from '../config/locationConfig';
+import { WhatsAppIcon, InstagramIcon, LinkedInIcon } from './SocialIcons';
 
 interface FooterProps {
   navigate: (path: string) => void;
@@ -30,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             </p>
 
             <div className="space-y-2.5 pt-2">
-              <div>
+              <div className="flex flex-col gap-2">
                 <a 
                   href={`mailto:${companyData.email}`}
                   className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors"
@@ -39,9 +40,59 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                   <span>{companyData.email}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
+
+                <a 
+                  href={companyData.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 font-medium transition-colors group"
+                >
+                  <WhatsAppIcon size={16} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+                  <span>{companyData.phone} (WhatsApp)</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
               </div>
 
-              <div className="space-y-2 text-xs text-slate-400 max-w-xs leading-relaxed">
+              {/* Social Channels Row */}
+              <div className="pt-2">
+                <span className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider block mb-2">Connect With Us</span>
+                <div className="flex items-center gap-2.5">
+                  <a
+                    href={companyData.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow NEXOVIRA on LinkedIn"
+                    title="Follow NEXOVIRA on LinkedIn"
+                    className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-[#0A66C2] hover:bg-[#0A66C2]/20 transition-all duration-200 group cursor-pointer"
+                  >
+                    <LinkedInIcon size={18} className="text-[#0A66C2] group-hover:scale-110 transition-transform" />
+                  </a>
+
+                  <a
+                    href={companyData.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow NEXOVIRA on Instagram"
+                    title="Follow NEXOVIRA on Instagram"
+                    className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-pink-500 hover:bg-pink-500/20 transition-all duration-200 group cursor-pointer"
+                  >
+                    <InstagramIcon size={18} className="text-pink-400 group-hover:scale-110 transition-transform" />
+                  </a>
+
+                  <a
+                    href={companyData.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chat with NEXOVIRA on WhatsApp"
+                    title="Chat with NEXOVIRA on WhatsApp"
+                    className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-emerald-500 hover:bg-[#25D366]/20 transition-all duration-200 group cursor-pointer"
+                  >
+                    <WhatsAppIcon size={18} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="space-y-2 text-xs text-slate-400 max-w-xs leading-relaxed pt-2">
                 <div className="flex items-start gap-2">
                   <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
                   <div>

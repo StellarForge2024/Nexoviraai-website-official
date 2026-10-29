@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { HomePage } from './pages/HomePage';
 import { ServicesOverviewPage } from './pages/ServicesOverviewPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
@@ -133,6 +134,7 @@ export default function App() {
         {renderCurrentPage()}
       </main>
       <Footer navigate={navigate} />
+      <FloatingWhatsApp />
     </div>
   );
 }

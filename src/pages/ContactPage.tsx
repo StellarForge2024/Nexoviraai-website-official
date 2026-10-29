@@ -4,6 +4,7 @@ import { ContactForm } from '../components/ContactForm';
 import { OurLocationSection } from '../components/OurLocationSection';
 import { companyData } from '../data/companyData';
 import { FaqSection } from '../components/FaqSection';
+import { WhatsAppIcon, InstagramIcon, LinkedInIcon } from '../components/SocialIcons';
 
 interface ContactPageProps {
   navigate: (path: string) => void;
@@ -43,22 +44,47 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
             {/* Right 5 Columns: Direct Contact & What to Expect */}
             <div className="lg:col-span-5 space-y-6">
               
-              {/* Direct Email Card */}
+              {/* Direct Inquiries Card */}
               <div className="bg-[#0b1222] border border-blue-900/40 rounded-2xl p-6 sm:p-8 space-y-4">
                 <h3 className="text-lg font-bold text-white font-display">
                   Direct Inquiries
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  You can also email your project brief, RFP, or architecture diagrams directly to our engineering team.
+                  Connect directly with our engineering and strategy leads via email or WhatsApp for rapid project assessment.
                 </p>
                 
-                <div className="pt-2">
+                <div className="space-y-3 pt-2">
+                  {/* WhatsApp Quick Chat */}
+                  <a
+                    href={companyData.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 rounded-xl bg-[#070b14] border border-emerald-900/50 hover:border-emerald-500/60 transition-colors flex items-center justify-between group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-lg bg-emerald-950/70 border border-emerald-800/40 text-emerald-400 group-hover:scale-105 transition-transform">
+                        <WhatsAppIcon size={20} className="text-emerald-400" />
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-400 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          <span>Direct WhatsApp / Call</span>
+                        </div>
+                        <div className="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">
+                          {companyData.phone}
+                        </div>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+
+                  {/* Official Email */}
                   <a
                     href={`mailto:${companyData.email}?subject=Project%20Inquiry%20-%20NEXOVIRA%20AI%20Solution`}
                     className="p-4 rounded-xl bg-[#070b14] border border-blue-900/50 hover:border-blue-500/60 transition-colors flex items-center justify-between group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-lg bg-blue-950/70 border border-blue-800/40 text-blue-400">
+                      <div className="p-2.5 rounded-lg bg-blue-950/70 border border-blue-800/40 text-blue-400 group-hover:scale-105 transition-transform">
                         <Mail className="w-5 h-5" />
                       </div>
                       <div>
@@ -69,6 +95,54 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
                       </div>
                     </div>
                     <ArrowUpRight className="w-4 h-4 text-blue-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Follow Us / Social Channels Card */}
+              <div className="bg-[#0b1222] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
+                <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                  Follow & Connect
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Stay updated on our engineering releases, AI case studies, and corporate announcements.
+                </p>
+
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  {/* LinkedIn */}
+                  <a
+                    href={companyData.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3.5 rounded-xl bg-[#070b14] border border-slate-800 hover:border-[#0A66C2]/60 hover:bg-[#0A66C2]/10 transition-all flex items-center gap-3 group"
+                  >
+                    <div className="p-2 rounded-lg bg-[#0A66C2]/15 text-[#0A66C2] group-hover:scale-110 transition-transform">
+                      <LinkedInIcon size={20} />
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-slate-400">LinkedIn</div>
+                      <div className="text-xs font-semibold text-white group-hover:text-blue-300">
+                        NEXOVIRA
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* Instagram */}
+                  <a
+                    href={companyData.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3.5 rounded-xl bg-[#070b14] border border-slate-800 hover:border-pink-500/60 hover:bg-pink-500/10 transition-all flex items-center gap-3 group"
+                  >
+                    <div className="p-2 rounded-lg bg-pink-500/15 text-pink-400 group-hover:scale-110 transition-transform">
+                      <InstagramIcon size={20} />
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-slate-400">Instagram</div>
+                      <div className="text-xs font-semibold text-white group-hover:text-pink-300">
+                        @_nexovira
+                      </div>
+                    </div>
                   </a>
                 </div>
               </div>

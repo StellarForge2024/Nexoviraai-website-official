@@ -1,6 +1,28 @@
 export const companyData = {
   name: 'NEXOVIRA AI Solution',
   email: 'info@nexoviraai.com',
+  phone: '+91 97523 62808',
+  phoneFormatted: '+91 97523 62808',
+  whatsappUrl: 'https://wa.me/919752362808?text=Hello%20NEXOVIRA%20AI%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project.',
+  instagramUrl: 'https://www.instagram.com/_nexovira?stkn=MXVsYzdlcGU1dDZqZw%3D%3D&utm_source=qr',
+  linkedinUrl: 'https://www.linkedin.com/company/nexovira-ai/',
+  socials: {
+    whatsapp: {
+      label: 'WhatsApp',
+      value: '+91 97523 62808',
+      url: 'https://wa.me/919752362808?text=Hello%20NEXOVIRA%20AI%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project.'
+    },
+    instagram: {
+      label: 'Instagram',
+      value: '@_nexovira',
+      url: 'https://www.instagram.com/_nexovira?stkn=MXVsYzdlcGU1dDZqZw%3D%3D&utm_source=qr'
+    },
+    linkedin: {
+      label: 'LinkedIn',
+      value: 'nexovira-ai',
+      url: 'https://www.linkedin.com/company/nexovira-ai/'
+    }
+  },
   tagline: 'Intelligent Software. Practical AI. Built for Your Business.',
   subheadline: 'We build custom software, websites, CRM and ERP systems, AI agents, and data solutions that help businesses simplify operations and grow.',
   shortDescription: 'NEXOVIRA AI Solution is a professional technology partner helping startups, small and medium businesses, and enterprises build custom software, develop digital platforms, automate business processes, and use data and AI effectively.',

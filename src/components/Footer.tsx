@@ -45,15 +45,15 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                 <div className="flex items-start gap-2">
                   <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-slate-300 font-semibold block text-[11px]">Bengaluru HQ:</span>
-                    <span>No. 15, 100 Feet Ring Road, BTM 2nd Stage, Bengaluru 560076</span>
+                    <span className="text-slate-300 font-semibold block text-[11px]">Headquarters (Varanasi):</span>
+                    <span>Near Samrithi Memorial Academy, Chhittupur, Bhagwanpur, Varanasi 221005</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-slate-300 font-semibold block text-[11px]">Bhopal Office:</span>
-                    <span>MP Nagar, Kolar Rd, Bhopal, MP 462042</span>
+                    <span className="text-slate-300 font-semibold block text-[11px]">Bengaluru Office:</span>
+                    <span>No. 15, 100 Feet Ring Road, BTM 2nd Stage, Bengaluru 560076</span>
                   </div>
                 </div>
               </div>
